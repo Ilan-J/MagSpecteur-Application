@@ -18,12 +18,8 @@ public class MagazineController implements Initializable {
 	public AnchorPane magazineViewRoot;
 	@FXML
 	public AnchorPane magazineList;
-//	@FXML
-//	private MagazineListController magazineListController;
 	@FXML
 	public AnchorPane magazineDetails;
-//	@FXML
-//	private MagazineDetailsController magazineDetailsController;
 
 	private final ListProperty<Magazine> magazineListProperty = new SimpleListProperty<>();
 	private final ObjectProperty<Magazine> magazineObjectProperty = new SimpleObjectProperty<>();
@@ -42,5 +38,7 @@ public class MagazineController implements Initializable {
 		MagazineListController.magazineProperty().bindBidirectional(magazineObjectProperty);
 		MagazineDetailsController.magazineProperty().bindBidirectional(magazineObjectProperty);
 		magazineObjectProperty.set(null);
+
+		magazineDetails.setVisible(false);
 	}
 }

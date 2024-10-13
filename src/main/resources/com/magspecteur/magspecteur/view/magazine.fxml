@@ -13,8 +13,8 @@
             fx:id="magazineViewRoot"
             fx:controller="com.magspecteur.magspecteur.controller.MagazineController"
             minHeight="350.0" minWidth="700.0">
-    <VBox>
+    <Pane>
         <fx:include fx:id="magazineList" source="magazine-list.fxml"/>
         <fx:include fx:id="magazineDetails" source="magazine-details.fxml"/>
-    </VBox>
+    </Pane>
 </AnchorPane>

@@ -9,13 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MagazineDetailsController implements Initializable {
 
@@ -23,9 +22,9 @@ public class MagazineDetailsController implements Initializable {
 	public AnchorPane magazineDetailsRoot;
 
 	@FXML
-	public Label magazineName;
+	public Label magazineNameAndNumber;
 	@FXML
-	public Label magazineNumberAndDate;
+	public Label magazineReleaseDate;
 	@FXML
 	public Label magazinePublisher;
 	@FXML
@@ -43,10 +42,21 @@ public class MagazineDetailsController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		magazineProperty.addListener((observable, oldValue, newValue) -> {
 			magazineDetailsRoot.setVisible(newValue != null);
-			if (newValue != null) {
-
-			}
+			magazineDetailsRoot.setMaxHeight(
+					newValue != null ? Region.USE_COMPUTED_SIZE : 0);
+			if (newValue != null)
+				fillMagazineDetails(
+						newValue.getName(),
+						newValue.getNumber(),
+						newValue.getRelease(),
+						newValue.getPublisher().getName(),
+						fetchArticles(newValue.getId())
+				);
 		});
+	}
+
+	public void onBackButtonClick(MouseEvent event) {
+		magazineProperty.set(null);
 	}
 
 	private List<Article> fetchArticles(Integer magazineId) {
@@ -54,8 +64,14 @@ public class MagazineDetailsController implements Initializable {
 	}
 
 	private void fillMagazineDetails(String name, Integer number, Date release, String publisherName, List<Article> articles) {
-		magazineName.setText(name);
-		magazineNumberAndDate.setText(String.format("%s - %s", number, release));
+		magazineNameAndNumber.setText(String.format("%s - N°%s", name, number));
+		Calendar calendar = new Calendar.Builder().setInstant(release).build();
+		magazineReleaseDate.setText(String.format(
+				"%s %s %s",
+				calendar.get(Calendar.DAY_OF_MONTH),
+				calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.FRANCE),
+				calendar.get(Calendar.YEAR)
+		));
 		magazinePublisher.setText(publisherName);
 		magazineArticles.getItems().setAll(articles);
 	}

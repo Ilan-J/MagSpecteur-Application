@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
@@ -51,7 +52,10 @@ public class MagazineListController implements Initializable {
 
 		magazineProperty.addListener((observable, oldValue, newValue) -> {
 			magazineListRoot.setVisible(newValue == null);
+			magazineListRoot.setMaxHeight(
+					newValue == null ? Region.USE_COMPUTED_SIZE : 0);
 		});
+		reloadMagazines(null);
 	}
 
 	@FXML

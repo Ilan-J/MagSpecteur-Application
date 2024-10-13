@@ -24,6 +24,11 @@ public class Article {
 		return id;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s By %s", name, author);
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

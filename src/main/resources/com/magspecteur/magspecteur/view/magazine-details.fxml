@@ -13,11 +13,11 @@
             <HBox.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </HBox.margin>
-            <Label text="&lt;">
+            <Button text="&lt;" onMouseClicked="#onBackButtonClick">
                 <font>
                     <Font name="System Bold" size="24.0"/>
                 </font>
-            </Label>
+            </Button>
         </VBox>
         <VBox>
             <HBox.margin>
@@ -32,12 +32,12 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </HBox.margin>
             <VBox>
-                <Label fx:id="magazineName" text="Nom Magazine">
+                <Label fx:id="magazineNameAndNumber" text="Nom Magazine">
                     <font>
                         <Font size="24.0"/>
                     </font>
                 </Label>
-                <Label fx:id="magazineNumberAndDate" text="Numéro - Date de Sortie">
+                <Label fx:id="magazineReleaseDate" text="Numéro - Date de Sortie">
                     <font>
                         <Font name="System Italic" size="18.0"/>
                     </font>
