@@ -2,6 +2,8 @@ package com.magspecteur.magspecteur.controller;
 
 import com.magspecteur.magspecteur.model.Article;
 import com.magspecteur.magspecteur.model.Theme;
+import com.magspecteur.magspecteur.repository.ArticleRepository;
+import com.magspecteur.magspecteur.repository.ThemeRepository;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -22,7 +24,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArticleController {
+
+	private final ArticleRepository articleRepository;
+
+	private final ThemeRepository themeRepository;
 
 	@FXML
 	public AnchorPane articleViewRoot;
@@ -35,6 +44,11 @@ public class ArticleController {
 	@FXML
 	public FlowPane articleList;
 
+	public ArticleController() {
+		this.articleRepository = new ArticleRepository();
+		this.themeRepository = new ThemeRepository();
+	}
+
 	@FXML
 	public void initialize() {
 
@@ -42,40 +56,37 @@ public class ArticleController {
 		articleList.prefHeightProperty().bind(articleViewRoot.heightProperty());
 
 
-		Theme themeCuisine = new Theme("Cuisine");
-		Theme themeJardin = new Theme("Jardin");
-		Theme themeDecoration = new Theme("Décoration");
+//		Article articlePatate = new Article("Potato", "PotatoMan", 1, themeCuisine);
+//		Article articleSalon = new Article("Un salon de rêve", "Valérie damido", 9999, themeDecoration);
 
-		themeChoiceBox.getItems().addAll(
-				null,
-				themeCuisine,
-				themeJardin,
-				themeDecoration
-		);
-
-		Article articlePatate = new Article("Potato", "PotatoMan", 1, themeCuisine);
-		Article articleSalon = new Article("Un salon de rêve", "Valérie damido", 9999, themeDecoration);
-
-		articleList.getChildren().addAll(
-				createArticlePane(articlePatate),
-				createArticlePane(articleSalon)
-		);
+//		refresh();
 	}
 
 	@FXML
-	protected void onSearchFieldKeyPress(KeyEvent event) {
+	public void onSearchFieldKeyPress(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER)
 			searchArticle();
 	}
 
 	@FXML
-	protected void onSearchButtonClick(MouseEvent event) {
+	public void onSearchButtonClick(MouseEvent event) {
 		if (event.getButton() == MouseButton.PRIMARY)
 			searchArticle();
 	}
 
 	private void searchArticle() {
 		String search = searchField.getText();
+	}
+
+	private void refresh() {
+		List<Theme> themes = themeRepository.getAll();
+		themeChoiceBox.getItems().setAll(themes);
+
+		List<Pane> articlePanes = new ArrayList<>();
+		List<Article> articles = articleRepository.getAll();
+		articles.forEach(article -> articlePanes.add(createArticlePane(article)));
+
+		articleList.getChildren().setAll(articlePanes);
 	}
 
 	private Pane createArticlePane(Article article) {
