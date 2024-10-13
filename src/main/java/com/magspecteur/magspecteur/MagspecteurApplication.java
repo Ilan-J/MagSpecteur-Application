@@ -13,7 +13,7 @@ import java.util.Objects;
 public class MagspecteurApplication extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(MagspecteurApplication.class.getResource("view/main-view.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(MagspecteurApplication.class.getResource("view/main.fxml"));
 		Scene scene = new Scene(fxmlLoader.load());
 		stage.setTitle("MagSpecteur");
 		IconLoader.loadIcons(stage);

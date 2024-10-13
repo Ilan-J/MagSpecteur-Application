@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="magazineViewRoot"
+            fx:controller="com.magspecteur.magspecteur.controller.MagazineController"
+            minHeight="350.0" minWidth="700.0">
+    <VBox>
+        <fx:include fx:id="magazineList" source="magazine-list.fxml"/>
+        <fx:include fx:id="magazineDetails" source="magazine-details.fxml"/>
+    </VBox>
+</AnchorPane>

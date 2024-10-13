@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:id="magazineViewRoot"
-            fx:controller="com.magspecteur.magspecteur.controller.MagazineController"
-            minHeight="350.0" minWidth="700.0">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="magazineListRoot" xmlns="http://javafx.com/javafx/17.0.12"
+            fx:controller="com.magspecteur.magspecteur.controller.MagazineListController">
     <BorderPane>
         <left>
             <VBox minHeight="350.0" minWidth="170.0" spacing="10.0" BorderPane.alignment="CENTER">
@@ -24,14 +19,14 @@
                         <Font name="System Bold" size="16.0"/>
                     </font>
                 </Label>
-                <TextField fx:id="filterField" minWidth="150.0" onKeyPressed="#onSearchFieldKeyPress"/>
+                <TextField fx:id="searchField" minWidth="150.0" onKeyPressed="#onSearchFieldKeyPress"/>
                 <HBox alignment="CENTER">
-                    <Button fx:id="filterButton" onMouseClicked="#onSearchButtonClick" text="Filtrer"/>
+                    <Button fx:id="searchButton" onMouseClicked="#onSearchButtonClick" text="Actualiser"/>
                 </HBox>
             </VBox>
         </left>
         <center>
-            <FlowPane fx:id="magazineFlowPane" hgap="10.0" minWidth="490.0" vgap="10.0" BorderPane.alignment="CENTER">
+            <FlowPane fx:id="magazinesFlowPane" hgap="10.0" minWidth="490.0" vgap="10.0" BorderPane.alignment="CENTER">
                 <BorderPane.margin>
                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                 </BorderPane.margin>

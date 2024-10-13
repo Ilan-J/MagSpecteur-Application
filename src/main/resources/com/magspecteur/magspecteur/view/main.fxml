@@ -31,9 +31,9 @@
         </top>
       <center>
           <Pane BorderPane.alignment="CENTER">
-              <fx:include fx:id="articlesPane" source="article-view.fxml" />
-              <fx:include fx:id="magazinesPane" source="magazine-view.fxml" />
-              <fx:include fx:id="publishersPane" source="publisher-view.fxml" />
+              <fx:include fx:id="articlesPane" source="article.fxml" />
+              <fx:include fx:id="magazinesPane" source="magazine.fxml" />
+              <fx:include fx:id="publishersPane" source="publisher.fxml" />
           </Pane>
       </center>
     </BorderPane>

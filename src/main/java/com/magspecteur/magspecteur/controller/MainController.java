@@ -48,7 +48,7 @@ public class MainController {
 		publishersPane.prefWidthProperty().bind(rootWidth);
 		publishersPane.prefHeightProperty().bind(rootHeight);
 
-		setSubject(articlesLabel.getText());
+		setSubject(magazinesLabel.getText());
 	}
 
 	@FXML
