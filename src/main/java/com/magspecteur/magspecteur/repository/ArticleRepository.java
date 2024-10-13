@@ -14,24 +14,53 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class ArticleRepository {
-	private final String BASE_URI = "http://192.168.1.120:80/api/articles";
+	private final String BASE_URI = "http://192.168.1.120:80/api";
 
 	private final Logger _logger;
 	private final ObjectMapper objectMapper;
 
+	private final HttpClient httpClient;
+
 	public ArticleRepository() {
 		this._logger = Logger.getLogger(ArticleRepository.class.getName());
+		this.httpClient = HttpClient.newHttpClient();
 
 		this.objectMapper = new ObjectMapper();
 	}
 
 	public List<Article> getAll() {
-		// Create an HttpClient instance
-		HttpClient httpClient = HttpClient.newHttpClient();
+		String uri = String.format("%s/articles", BASE_URI);
 
 		// Prepare the request
 		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create(BASE_URI))
+				.uri(URI.create(uri))
+				.header("Content-Type", "application/json")
+				.GET()
+				.build();
+
+		try {
+			// Send the request and handle the response
+			HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+			if (response.statusCode() != 200)
+				return null;
+
+			Article[] articles = objectMapper.readValue(response.body(), Article[].class);
+			return Arrays.stream(articles).toList();
+
+		} catch (IOException | InterruptedException e) {
+
+			_logger.severe(e.getMessage());
+			return null;
+		}
+	}
+
+	public List<Article> getMagazineArticles(Integer magazineId) {
+		String uri = String.format("%s/magazines/%s/articles", BASE_URI, magazineId);
+
+		// Prepare the request
+		HttpRequest request = HttpRequest.newBuilder()
+				.uri(URI.create(uri))
 				.header("Content-Type", "application/json")
 				.GET()
 				.build();
