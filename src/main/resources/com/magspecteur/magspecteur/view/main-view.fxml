@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" minHeight="400.0" minWidth="700.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.magspecteur.magspecteur.controller.MainController">
+    <BorderPane>
+        <top>
+            <ToolBar fx:id="toolBar" minWidth="700.0" prefHeight="40.0" BorderPane.alignment="CENTER">
+                <ImageView fitHeight="40.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../img/banner-magspecteur-160x40.png" />
+                </ImageView>
+                <Label fx:id="articlesLabel" onMouseClicked="#onSubjectLabelClick" text="Articles">
+                    <padding>
+                        <Insets left="10.0" right="5.0" />
+                    </padding>
+                </Label>
+                <Label fx:id="magazinesLabel" onMouseClicked="#onSubjectLabelClick" text="Magazines">
+                    <padding>
+                        <Insets left="5.0" right="5.0" />
+                    </padding>
+                </Label>
+                <Label fx:id="publishersLabel" onMouseClicked="#onSubjectLabelClick" text="Éditeurs">
+                    <padding>
+                        <Insets left="5.0" right="5.0" />
+                    </padding>
+                </Label>
+            </ToolBar>
+        </top>
+      <center>
+          <Pane BorderPane.alignment="CENTER">
+              <fx:include fx:id="articlesPane" source="article-view.fxml" />
+              <fx:include fx:id="magazinesPane" source="magazine-view.fxml" />
+              <fx:include fx:id="publishersPane" source="publisher-view.fxml" />
+          </Pane>
+      </center>
+    </BorderPane>
+</AnchorPane>
