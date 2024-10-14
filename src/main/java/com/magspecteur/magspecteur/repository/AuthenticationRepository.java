@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class AuthenticationRepository {
 
-	private final String BASE_URI = "http://192.168.1.120:80/auth";
+	private final String BASE_URI = "http://magspecteur.com:80/auth";
 
 	private final Logger _logger;
 	private final ObjectMapper objectMapper;
